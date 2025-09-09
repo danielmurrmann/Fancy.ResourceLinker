@@ -137,7 +137,7 @@ internal sealed class GatewayAuthentication
                 logger.LogInformation("Starting authorization flow for request to: " + context.HttpContext.Request.GetDisplayUrl());
                 // If the request was made 'from Code aka from javascript' return unauthorized instead of the default redirect
                 // to make visible to a javascript that the authentication is not valid (anymore)
-                if(context.Request.Headers["X-Requested-With"] == "XmlHttpRequest")
+                if(context.Request.Headers["X-Requested-With"] == "XmlHttpRequest" || context.Request.Headers["Sec-Fetch-Dest"] == "empty")
                 {
                     context.Response.StatusCode = StatusCodes.Status401Unauthorized;
                     context.HandleResponse();
