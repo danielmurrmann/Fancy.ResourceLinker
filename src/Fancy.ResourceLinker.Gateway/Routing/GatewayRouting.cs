@@ -86,7 +86,6 @@ internal static class GatewayRouting
 
         reverseProxyBuilder.LoadFromMemory(routes, clusters)
                            .AddTransforms(builder => 
-                                builder.AddRequestTransform(async context => 
-                                    context.ProxyRequest.Headers.SetForwardedHeaders(settings.ResourceProxy)));
+                                builder.AddRequestTransform(context => { context.ProxyRequest.Headers.SetForwardedHeaders(settings.ResourceProxy); return ValueTask.CompletedTask; }));
     }
 }
