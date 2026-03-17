@@ -17,8 +17,7 @@ public class HypermediaController : ControllerBase
     /// <returns>A linked object result.</returns>
     public virtual IActionResult Hypermedia<TResource>(TResource content) where TResource : IResource
     {
-        this.LinkResource(content);
-        return new ObjectResult(content);
+        return new HypermediaResult<TResource>(content);
     }
 
     /// <summary>
@@ -29,7 +28,6 @@ public class HypermediaController : ControllerBase
     /// <returns>A linked object result.</returns>
     public virtual IActionResult Hypermedia<TResource>(IEnumerable<TResource> content) where TResource : IResource
     {
-        this.LinkResources(content);
-        return new ObjectResult(content);
+        return new HypermediaResult<TResource>(content);
     }
 }
