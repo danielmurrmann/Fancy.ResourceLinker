@@ -15,9 +15,11 @@ public class ResourceActionTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
     public void Constructor_WithGETVerb_ThrowsException()
     {
-        var target = new ResourceAction("GET", "http://foo.bar/baz");
+        Assert.Throws<ArgumentException>(() =>
+        {
+            var target = new ResourceAction("GET", "http://foo.bar/baz");
+        });
     }
 }
