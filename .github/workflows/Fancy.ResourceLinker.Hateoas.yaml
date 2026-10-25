@@ -14,6 +14,9 @@ on:
       - 'src/Fancy.ResourceLinker.Hateoas.ITest/**'
       - '.github/workflows/Fancy.ResourceLinker.Hateoas.yaml'
 
+permissions:
+  contents: read
+
 jobs:
   buid:
     runs-on: ubuntu-latest
