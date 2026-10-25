@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Fancy.ResourceLinker.Gateway.AntiForgery;
 
@@ -59,7 +60,7 @@ internal static class GatewayAntiForgery
             }
 
             // Add a XSRF Cookie to the response
-            context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken, new CookieOptions() { HttpOnly = false });
+            context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken, new CookieOptions() { HttpOnly = false, Secure = !webApp.Environment.IsDevelopment() });
 
             return next(context);
         });
