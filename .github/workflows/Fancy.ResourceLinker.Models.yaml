@@ -14,6 +14,9 @@ on:
       - 'src/Fancy.ResourceLinker.Models.ITest/**'
       - '.github/workflows/Fancy.ResourceLinker.Models.yaml'
 
+permissions:
+  contents: read
+
 jobs:
   buid:
     runs-on: ubuntu-latest
